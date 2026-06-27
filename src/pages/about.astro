@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="About — Parola Development" description="Parola Development — UK-based IT consultancy founded by Jamie Shiers, helping small businesses build, secure, and manage their technology.">
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">About</p>
+      <h1>Built to bring enterprise-grade<br/>reliability to small businesses</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text prose">
+          <p>Parola Development exists because small businesses deserve the same quality of technology as large ones — without the enterprise price tag or the jargon.</p>
+          <p>We design, build, and maintain the systems that keep your operations running: custom software, email security, Microsoft 365, and everything in between. The result is technology that feels simple, secure, and sustainable.</p>
+          <h2>Founded by Jamie Shiers</h2>
+          <p>Parola was founded by Jamie Shiers, who combines a background in aerospace manufacturing operations and quality management with hands-on IT and cyber security expertise. That unusual combination means we understand how real businesses work — not just how technology works in theory.</p>
+          <p>Jamie also works as Operations & Quality Manager at a UK aerospace manufacturer, where he leads AS9100D certification, Cyber Essentials implementation, and JOSCAR supplier qualification. That day-to-day experience informs everything Parola does.</p>
+          <h2>Our approach</h2>
+          <p>We don't believe in over-engineering, unnecessary complexity, or locking clients into dependencies they don't need. We build on modern, open platforms (DigitalOcean, Cloudflare, Microsoft 365), explain everything in plain English, and price transparently.</p>
+          <p>Most of our clients are small businesses — between 5 and 50 people — who want a trusted IT partner rather than a one-off project vendor. We're built for long-term relationships, not short-term engagements.</p>
+        </div>
+        <aside class="about-sidebar">
+          <div class="sidebar-card">
+            <p class="sidebar-label">Location</p>
+            <p>Balsall Common, West Midlands, UK</p>
+          </div>
+          <div class="sidebar-card">
+            <p class="sidebar-label">Registered</p>
+            <p>Parola Development LTD<br/>First Floor, The Annex<br/>Fernhill Court, Balsall Common<br/>CV7 7FR</p>
+          </div>
+          <div class="sidebar-card">
+            <p class="sidebar-label">Specialisms</p>
+            <ul class="spec-list">
+              <li>Cyber Essentials</li>
+              <li>Microsoft 365</li>
+              <li>Email authentication</li>
+              <li>Managed IT</li>
+              <li>Custom development</li>
+              <li>Aerospace supply chain IT</li>
+            </ul>
+          </div>
+          <a href="/contact" class="btn btn--gold" style="width:100%;justify-content:center;margin-top:4px">Get in touch</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .page-hero { background: var(--navy); padding: 56px 0 48px; }
+  .page-hero h1 { font-size: 32px; font-weight: 600; color: #fff; line-height: 1.2; letter-spacing: -0.4px; max-width: 520px; }
+  .about-grid { display: grid; grid-template-columns: 1fr 300px; gap: 56px; align-items: start; }
+  .about-sidebar { display: flex; flex-direction: column; gap: 14px; position: sticky; top: 80px; }
+  .sidebar-card { background: var(--gray); border: 1px solid var(--gray-mid); border-radius: 10px; padding: 18px 20px; font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+  .sidebar-label { font-size: 11px; font-weight: 600; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .spec-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+  .spec-list li::before { content: '→ '; color: var(--gold); }
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .about-sidebar { position: static; }
+    .page-hero h1 { font-size: 24px; }
+  }
+</style>

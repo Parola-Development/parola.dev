@@ -1,0 +1,130 @@
+---
+import Base from './Base.astro';
+import { categorySlug } from '../lib/utils';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  category: string;
+}
+
+const { title, description, pubDate, category } = Astro.props;
+
+const formattedDate = pubDate.toLocaleDateString('en-GB', {
+  day: 'numeric', month: 'long', year: 'numeric',
+});
+---
+
+<Base title={`${title} — Parola Development`} description={description} ogType="article">
+  <div class="post-hero">
+    <div class="container">
+      <div class="post-meta">
+        <time datetime={pubDate.toISOString()} class="post-date">{formattedDate}</time>
+        <span class={`tag tag--${categorySlug(category)}`}>{category}</span>
+      </div>
+      <h1 class="post-title">{title}</h1>
+      <p class="post-description">{description}</p>
+    </div>
+  </div>
+
+  <div class="post-body">
+    <div class="container">
+      <div class="post-layout">
+        <article class="prose">
+          <slot />
+        </article>
+        <aside class="post-sidebar">
+          <div class="sidebar-card">
+            <p class="sidebar-title">Need help with this?</p>
+            <p class="sidebar-text">Parola helps small businesses implement exactly these kinds of changes. Book a free 30-minute call.</p>
+            <a href="/contact" class="btn btn--gold" style="width:100%;justify-content:center;margin-top:16px">Book a free call</a>
+          </div>
+          <div class="sidebar-card" style="margin-top:14px">
+            <p class="sidebar-title">Free gap analysis</p>
+            <p class="sidebar-text">Find out where you stand against Cyber Essentials in under 10 minutes.</p>
+            <a href="/cyber-essentials#gap-analysis" class="btn btn--ghost" style="width:100%;justify-content:center;margin-top:16px;color:var(--navy)">Start assessment →</a>
+          </div>
+        </aside>
+      </div>
+      <div class="post-footer">
+        <a href="/blog" class="back-link">← All posts</a>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .post-hero {
+    background: var(--navy);
+    padding: 56px 0 48px;
+  }
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .post-date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+  .post-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    max-width: 680px;
+  }
+  .post-description {
+    font-size: 16px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    max-width: 580px;
+  }
+  .post-body { padding: 56px 0 80px; }
+  .post-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 48px;
+    align-items: start;
+  }
+  .post-sidebar { position: sticky; top: 80px; }
+  .sidebar-card {
+    background: var(--gray);
+    border: 1px solid var(--gray-mid);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .sidebar-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .sidebar-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .post-footer {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--gray-mid);
+  }
+  .back-link {
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .back-link:hover { opacity: 0.8; }
+
+  @media (max-width: 768px) {
+    .post-title { font-size: 1.5rem; }
+    .post-layout { grid-template-columns: 1fr; }
+    .post-sidebar { position: static; }
+  }
+</style>

@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { categorySlug, shortDate } from '../../lib/utils';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const categories = ['Cyber Essentials', 'Microsoft 365', 'Email Security', 'Managed IT'];
+---
+<Base title="Blog — Parola Development" description="Guides, how-tos, and practical advice on cyber security, Microsoft 365, and managed IT for UK small businesses.">
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Blog</p>
+      <h1>Guides & resources</h1>
+      <p class="hero-sub">Plain-English guides on cyber security, Microsoft 365, and IT for UK small businesses.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <nav class="filters" aria-label="Filter by category">
+        <button class="filter active" data-filter="all">All</button>
+        {categories.map(cat => (
+          <button class={`filter`} data-filter={categorySlug(cat)}>{cat}</button>
+        ))}
+      </nav>
+      <div class="posts-grid">
+        {posts.map(post => (
+          <article class="post-card" data-category={categorySlug(post.data.category)}>
+            <a href={`/blog/${post.id}`}>
+              <div class="post-meta">
+                <span class={`tag tag--${categorySlug(post.data.category)}`}>{post.data.category}</span>
+                <time class="post-date">{shortDate(post.data.pubDate)}</time>
+              </div>
+              <h2 class="post-title">{post.data.title}</h2>
+              <p class="post-excerpt">{post.data.description}</p>
+              <span class="post-read">Read more →</span>
+            </a>
+          </article>
+        ))}
+        {posts.length === 0 && <p class="empty">No posts yet — check back soon.</p>}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const filters = document.querySelectorAll('.filter');
+  const posts   = document.querySelectorAll('.post-card');
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const active = btn.getAttribute('data-filter') ?? 'all';
+      filters.forEach(f => f.classList.remove('active'));
+      btn.classList.add('active');
+      posts.forEach(p => {
+        (p as HTMLElement).style.display = active === 'all' || p.getAttribute('data-category') === active ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+<style>
+  .page-hero { background: var(--navy); padding: 56px 0 48px; }
+  .page-hero h1 { font-size: 32px; font-weight: 600; color: #fff; margin-bottom: 12px; letter-spacing: -0.4px; }
+  .hero-sub { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 480px; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px; }
+  .filter { font-family: var(--font-mono); font-size: 11px; padding: 6px 14px; border-radius: 4px; border: 1px solid var(--gray-mid); color: var(--text-muted); background: none; cursor: pointer; transition: all 0.15s; }
+  .filter:hover { border-color: var(--navy); color: var(--navy); }
+  .filter.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .posts-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .post-card { background: #fff; border: 1px solid var(--gray-mid); border-radius: var(--radius); transition: box-shadow 0.15s; }
+  .post-card:hover { box-shadow: var(--shadow); }
+  .post-card a { display: block; padding: 28px; text-decoration: none; }
+  .post-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .post-date { font-family: var(--font-mono); font-size: 11px; color: var(--text-subtle); }
+  .post-title { font-size: 15px; font-weight: 600; color: var(--navy); line-height: 1.4; margin-bottom: 10px; }
+  .post-excerpt { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 16px; }
+  .post-read { font-size: 12px; font-weight: 500; color: var(--gold); }
+  .empty { color: var(--text-muted); font-size: 14px; padding: 40px 0; }
+  @media (max-width: 768px) { .posts-grid { grid-template-columns: 1fr; } }
+</style>

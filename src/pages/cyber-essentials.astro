@@ -1,0 +1,177 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Cyber Essentials — Parola Development" description="Cyber Essentials certification support for UK small businesses. Gap analysis, implementation, and certification guidance. Fixed fee, no jargon.">
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Cyber Essentials</p>
+      <h1>UK Government-backed cyber<br/>security certification</h1>
+      <p class="hero-sub">We guide small businesses through the full Cyber Essentials process — from a free gap analysis to your certificate. Fixed fee, plain-English guidance.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px">
+        <a href="#gap-analysis" class="btn btn--gold">Free gap analysis</a>
+        <a href="/contact" class="btn btn--outline">Speak to us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS CE -->
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">What is Cyber Essentials?</p>
+      <h2 class="section-title">Five controls that protect against most cyber attacks</h2>
+      <p class="section-sub">Cyber Essentials is a UK Government scheme that certifies you've implemented baseline security controls. It's increasingly required for Government contracts, defence supply chain work, and cyber insurance.</p>
+      <div class="controls-grid">
+        {[
+          ['🔒', 'Firewalls', 'Control what can reach your systems from the internet.'],
+          ['⚙️', 'Secure Configuration', 'Make sure devices aren\'t set up insecurely out of the box.'],
+          ['🔄', 'Security Updates', 'Keep software patched — critical patches within 14 days.'],
+          ['👤', 'User Access Control', 'Right people, right access. MFA on all cloud services.'],
+          ['🛡️', 'Malware Protection', 'Antivirus active and updated on all devices.'],
+        ].map(([icon, title, desc]) => (
+          <div class="control-card">
+            <div class="control-icon">{icon}</div>
+            <h3>{title}</h3>
+            <p>{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="section section--gray">
+    <div class="container">
+      <p class="eyebrow">How we help</p>
+      <h2 class="section-title">From gap analysis to certificate</h2>
+      <div class="process-grid">
+        {[
+          ['01', 'Gap Analysis', 'We assess your current setup against all five controls and give you a clear picture of what needs to change.'],
+          ['02', 'Remediation Support', 'We help you close the gaps — whether that\'s enabling MFA, updating devices, or configuring your firewall.'],
+          ['03', 'Pre-Assessment Review', 'Before you submit, we walk through the question set with you to make sure everything is in order.'],
+          ['04', 'Certification', 'You submit through an IASME-accredited body. We\'re on hand if the assessor has questions.'],
+        ].map(([num, title, desc]) => (
+          <div class="process-card">
+            <div class="process-num">{num}</div>
+            <h3>{title}</h3>
+            <p>{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GAP ANALYSIS TOOL -->
+  <section class="section" id="gap-analysis">
+    <div class="container">
+      <p class="eyebrow">Free tool</p>
+      <h2 class="section-title">Check your readiness in 10 minutes</h2>
+      <p class="section-sub">Answer 30 plain-English questions and get a personalised gap analysis across all five Cyber Essentials controls.</p>
+      <div class="tool-embed">
+        <div class="tool-placeholder">
+          <div class="tool-icon">🛡️</div>
+          <p class="tool-label">Interactive Gap Analysis Tool</p>
+          <p class="tool-sub">Embed your React gap analysis tool here</p>
+          <a href="/contact" class="btn btn--gold" style="margin-top:20px">Or speak to us directly</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section section--gray">
+    <div class="container">
+      <p class="eyebrow">Pricing</p>
+      <h2 class="section-title">Simple, fixed-fee support</h2>
+      <p class="section-sub">Our Cyber Essentials support is priced based on your organisation size. No hidden costs, no surprises.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <p class="pricing-size">Up to 9 employees</p>
+          <p class="pricing-price">From <strong>£499</strong></p>
+          <p class="pricing-note">+ IASME assessment fee (~£320+VAT)</p>
+          <ul class="pricing-list">
+            <li>Gap analysis and remediation plan</li>
+            <li>Implementation support</li>
+            <li>Pre-assessment review</li>
+            <li>Assessment guidance</li>
+          </ul>
+          <a href="/contact" class="btn btn--gold" style="margin-top:24px;width:100%;justify-content:center">Get started</a>
+        </div>
+        <div class="pricing-card pricing-card--featured">
+          <p class="pricing-badge">Most common</p>
+          <p class="pricing-size">10–49 employees</p>
+          <p class="pricing-price">From <strong>£799</strong></p>
+          <p class="pricing-note">+ IASME assessment fee (~£430+VAT)</p>
+          <ul class="pricing-list">
+            <li>Everything in Starter</li>
+            <li>Multi-device configuration support</li>
+            <li>Microsoft 365 security setup</li>
+            <li>Staff awareness guidance</li>
+          </ul>
+          <a href="/contact" class="btn btn--gold" style="margin-top:24px;width:100%;justify-content:center">Get started</a>
+        </div>
+        <div class="pricing-card">
+          <p class="pricing-size">50+ employees</p>
+          <p class="pricing-price"><strong>Contact us</strong></p>
+          <p class="pricing-note">Tailored to your environment</p>
+          <ul class="pricing-list">
+            <li>Everything in Growth</li>
+            <li>Multi-site and complex environments</li>
+            <li>BYOD and remote worker guidance</li>
+            <li>CE Plus pathway if required</li>
+          </ul>
+          <a href="/contact" class="btn btn--navy" style="margin-top:24px;width:100%;justify-content:center">Talk to us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--navy" style="text-align:center">
+    <div class="container">
+      <p class="eyebrow" style="color:var(--gold);text-align:center">Get certified</p>
+      <h2 class="section-title section-title--white" style="text-align:center;margin:0 auto 12px;max-width:460px">Ready to start your Cyber Essentials journey?</h2>
+      <p style="color:rgba(255,255,255,0.55);font-size:15px;margin-bottom:32px;line-height:1.7">Book a free 30-minute call. We'll assess your situation and tell you exactly what's involved.</p>
+      <a href="/contact" class="btn btn--gold">Book a free call</a>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .page-hero { background: var(--navy); padding: 64px 0 56px; }
+  .page-hero h1 { font-size: 34px; font-weight: 600; color: #fff; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; max-width: 560px; }
+  .hero-sub { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.75; max-width: 480px; }
+  .controls-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 32px; }
+  .control-card { background: var(--gray); border: 1px solid var(--gray-mid); border-radius: var(--radius); padding: 20px 16px; text-align: center; }
+  .control-icon { font-size: 28px; margin-bottom: 10px; }
+  .control-card h3 { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .control-card p  { font-size: 12px; color: var(--text-muted); line-height: 1.55; }
+  .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
+  .process-card { background: #fff; border: 1px solid var(--gray-mid); border-radius: var(--radius); padding: 24px 20px; }
+  .process-num { font-family: var(--font-mono); font-size: 24px; font-weight: 500; color: var(--gold); margin-bottom: 12px; }
+  .process-card h3 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .process-card p  { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .tool-embed { margin-top: 32px; }
+  .tool-placeholder { background: var(--gray); border: 2px dashed var(--gray-mid); border-radius: var(--radius); padding: 64px 40px; text-align: center; }
+  .tool-icon  { font-size: 48px; margin-bottom: 16px; }
+  .tool-label { font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .tool-sub   { font-size: 13px; color: var(--text-muted); }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+  .pricing-card { background: #fff; border: 1px solid var(--gray-mid); border-radius: var(--radius); padding: 28px 24px; position: relative; }
+  .pricing-card--featured { border-color: var(--gold); border-width: 2px; }
+  .pricing-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #fff; font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 20px; white-space: nowrap; }
+  .pricing-size  { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .pricing-price { font-size: 22px; color: var(--navy); margin-bottom: 4px; }
+  .pricing-price strong { font-weight: 700; }
+  .pricing-note  { font-size: 12px; color: var(--text-subtle); margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--gray-mid); }
+  .pricing-list  { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .pricing-list li { font-size: 13px; color: var(--text-muted); padding-left: 18px; position: relative; }
+  .pricing-list li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-weight: 700; font-size: 11px; top: 2px; }
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 24px; }
+    .controls-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-grid  { grid-template-columns: 1fr; }
+    .pricing-grid  { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,13 @@
+name: parola-dev
+region: lon
+static_sites:
+  - name: parola-dev
+    source_dir: /
+    build_command: npm install && npm run build
+    output_dir: dist
+    environment_slug: node-js
+    routes:
+      - path: /
+    envs:
+      - key: NODE_VERSION
+        value: "22"

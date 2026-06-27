@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Services — Parola Development" description="Custom software, cyber security, and managed IT services for UK small businesses.">
+
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Services</p>
+      <h1>Everything your business needs<br/>from one trusted partner</h1>
+      <p class="hero-sub">We combine development, security, and IT management so you don't need separate vendors for every problem.</p>
+    </div>
+  </section>
+
+  <section class="section" id="build">
+    <div class="container">
+      <div class="service-block">
+        <div class="service-info">
+          <p class="eyebrow">Build</p>
+          <h2 class="section-title">Custom software that removes friction</h2>
+          <p class="section-sub">Off-the-shelf tools rarely fit perfectly. We build software tailored to your exact workflow — whether that's a client portal, an internal tool, or an automation that saves your team hours every week.</p>
+          <ul class="service-list">
+            <li>Web applications and internal dashboards</li>
+            <li>Process automations and integrations</li>
+            <li>Microsoft 365 customisations and Power Automate flows</li>
+            <li>Data exports, reports, and business intelligence tools</li>
+          </ul>
+          <a href="/contact" class="btn btn--navy" style="margin-top:24px">Discuss a project →</a>
+        </div>
+        <div class="service-visual build-visual">🔧</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--gray" id="secure">
+    <div class="container">
+      <div class="service-block service-block--reverse">
+        <div class="service-info">
+          <p class="eyebrow">Secure</p>
+          <h2 class="section-title">Security that protects your business and your reputation</h2>
+          <p class="section-sub">From Cyber Essentials certification to email authentication, we make sure your technology doesn't become a liability.</p>
+          <ul class="service-list">
+            <li>Cyber Essentials certification support — gap analysis to certificate</li>
+            <li>Email authentication: SPF, DKIM, DMARC, and MTA-STS setup and monitoring</li>
+            <li>Microsoft 365 security configuration and hardening</li>
+            <li>Security awareness for staff — plain-English guidance</li>
+          </ul>
+          <a href="/cyber-essentials" class="btn btn--gold" style="margin-top:24px">Learn about Cyber Essentials →</a>
+        </div>
+        <div class="service-visual secure-visual">🔒</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="manage">
+    <div class="container">
+      <div class="service-block">
+        <div class="service-info">
+          <p class="eyebrow">Manage</p>
+          <h2 class="section-title">Reliable IT management without the overhead</h2>
+          <p class="section-sub">A dependable IT partner who keeps your systems running, your data backed up, and your team supported — without the cost of an in-house team.</p>
+          <ul class="service-list">
+            <li>Microsoft 365 setup, licensing, and administration</li>
+            <li>Device management and endpoint security</li>
+            <li>Backup strategy — local, cloud, and offsite</li>
+            <li>Responsive support for day-to-day IT issues</li>
+          </ul>
+          <a href="/contact" class="btn btn--navy" style="margin-top:24px">Talk to us →</a>
+        </div>
+        <div class="service-visual manage-visual">☁️</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--navy" style="text-align:center">
+    <div class="container">
+      <p class="eyebrow" style="color:var(--gold);text-align:center">Get started</p>
+      <h2 class="section-title section-title--white" style="text-align:center;margin:0 auto 12px;max-width:440px">Not sure which service you need?</h2>
+      <p style="color:rgba(255,255,255,0.55);font-size:15px;margin-bottom:32px;line-height:1.7">Book a free 15-minute call and we'll work it out together.</p>
+      <a href="/contact" class="btn btn--gold">Book a free call</a>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .page-hero { background: var(--navy); padding: 64px 0 56px; }
+  .page-hero h1 { font-size: 34px; font-weight: 600; color: #fff; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px; max-width: 560px; }
+  .hero-sub { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.75; max-width: 480px; }
+  .service-block { display: grid; grid-template-columns: 1fr 280px; gap: 64px; align-items: center; }
+  .service-block--reverse { direction: rtl; }
+  .service-block--reverse .service-info { direction: ltr; }
+  .service-block--reverse .service-visual { direction: ltr; }
+  .service-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .service-list li { font-size: 14px; color: var(--text-muted); padding-left: 20px; position: relative; line-height: 1.55; }
+  .service-list li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-size: 12px; top: 1px; }
+  .service-visual { width: 100%; aspect-ratio: 1; background: var(--gray); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 64px; border: 1px solid var(--gray-mid); }
+  .secure-visual { background: var(--gold-dim); }
+  @media (max-width: 768px) {
+    .page-hero h1 { font-size: 24px; }
+    .service-block, .service-block--reverse { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+    .service-visual { max-width: 120px; height: 120px; font-size: 40px; }
+  }
+</style>

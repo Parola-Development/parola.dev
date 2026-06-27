@@ -1,0 +1,292 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { categorySlug, shortDate } from '../lib/utils';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4);
+---
+
+<Base title="Parola Development — Build. Secure. Manage.">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <p class="hero-pill">UK-based IT consultancy · Small business specialists</p>
+        <h1>Build. Secure. Manage.<br/><span>Technology that works for you.</span></h1>
+        <p class="hero-sub">Managed IT, cyber security, and Microsoft 365 support for UK small businesses — plain-English advice, professional delivery.</p>
+        <div class="hero-btns">
+          <a href="/contact" class="btn btn--gold">Get a free security review</a>
+          <a href="/contact#call" class="btn btn--outline">Book a 15-minute call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section--gray">
+    <div class="container">
+      <p class="eyebrow">What we do</p>
+      <h2 class="section-title">One partner for development, security, and IT</h2>
+      <p class="section-sub">We combine three disciplines into one dependable service — so you don't need separate vendors for every problem.</p>
+      <div class="services-grid">
+        <a href="/services#build" class="scard scard--build">
+          <div class="scard-icon">🔧</div>
+          <h3>Build</h3>
+          <p>Custom software and automations tailored to your workflow — web apps, internal tools, and integrations that reduce busywork.</p>
+          <span class="scard-link">Learn more →</span>
+        </a>
+        <a href="/services#secure" class="scard scard--secure">
+          <div class="scard-icon">🔒</div>
+          <h3>Secure</h3>
+          <p>Cyber Essentials certification, email authentication (SPF, DKIM, DMARC), and ongoing security monitoring.</p>
+          <span class="scard-link">Learn more →</span>
+        </a>
+        <a href="/services#manage" class="scard scard--manage">
+          <div class="scard-icon">☁️</div>
+          <h3>Manage</h3>
+          <p>Microsoft 365 setup, device management, backups, and responsive day-to-day IT support.</p>
+          <span class="scard-link">Learn more →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CYBER ESSENTIALS STRIP -->
+  <section class="ce-strip">
+    <div class="container">
+      <div class="ce-inner">
+        <div class="ce-text">
+          <p class="eyebrow" style="color:var(--gold-light)">Cyber Essentials</p>
+          <h2 style="color:#fff;font-size:22px;font-weight:600;margin-bottom:8px;letter-spacing:-0.3px">
+            UK Government-backed certification support
+          </h2>
+          <p style="color:rgba(255,255,255,0.6);font-size:14px;line-height:1.7;max-width:480px">
+            We guide small businesses through the full Cyber Essentials process — from gap analysis to certificate. Fixed fee, no jargon, no surprises.
+          </p>
+        </div>
+        <div class="ce-actions">
+          <a href="/cyber-essentials" class="btn btn--gold">Learn more</a>
+          <a href="/cyber-essentials#gap-analysis" class="btn btn--outline">Free gap analysis →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY PAROLA -->
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Why Parola</p>
+      <h2 class="section-title">What makes us different</h2>
+      <div class="why-grid">
+        {[
+          ['Plain-English explanations', 'We translate tech into language you can act on — no jargon, no condescension.'],
+          ['Transparent pricing', 'Clear deliverables and fixed fees. You always know what you\'re getting and what it costs.'],
+          ['Modern, secure infrastructure', 'We build on DigitalOcean and Cloudflare — the same platforms powering serious businesses.'],
+          ['Long-term partnership', 'We\'re not here for one project. We want to be your IT partner for the long haul.'],
+          ['UK-based and developer-led', 'Based in the West Midlands. Real people, real accountability, on your time zone.'],
+          ['Supply chain ready', 'We understand UK defence and aerospace requirements including Cyber Essentials and JOSCAR.'],
+        ].map(([title, text]) => (
+          <div class="why-card">
+            <div class="why-check">✓</div>
+            <div>
+              <p class="why-title">{title}</p>
+              <p class="why-text">{text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  {posts.length > 0 && (
+    <section class="section section--gray">
+      <div class="container">
+        <div class="blog-header">
+          <div>
+            <p class="eyebrow">From the blog</p>
+            <h2 class="section-title" style="margin-bottom:0">Latest guides & resources</h2>
+          </div>
+          <a href="/blog" class="btn btn--ghost">All posts →</a>
+        </div>
+        <div class="blog-grid">
+          {posts.map(post => (
+            <a href={`/blog/${post.id}`} class="bcard">
+              <div class="bmeta">
+                <span class={`tag tag--${categorySlug(post.data.category)}`}>{post.data.category}</span>
+                <span class="bdate">{shortDate(post.data.pubDate)}</span>
+              </div>
+              <h3 class="bcard-title">{post.data.title}</h3>
+              <p class="bcard-excerpt">{post.data.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="section section--navy">
+    <div class="container" style="text-align:center">
+      <p class="eyebrow" style="color:var(--gold);text-align:center">Get started</p>
+      <h2 class="section-title section-title--white" style="text-align:center;max-width:480px;margin:0 auto 12px">
+        Ready to simplify your technology?
+      </h2>
+      <p style="color:rgba(255,255,255,0.55);font-size:15px;margin-bottom:32px;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.7">
+        Tell us what you're working on. We'll reply with next steps within one business day.
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="/contact" class="btn btn--gold">Get in touch</a>
+        <a href="/contact#call" class="btn btn--outline">Book a 15-minute call</a>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  /* Hero */
+  .hero { background: var(--navy); padding: 80px 0 88px; }
+  .hero-inner { max-width: 620px; }
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(150,119,60,0.15);
+    border: 1px solid rgba(150,119,60,0.3);
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.75;
+    margin-bottom: 36px;
+    max-width: 480px;
+  }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* Services */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .scard {
+    background: #fff;
+    border: 1px solid var(--gray-mid);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    display: block;
+    text-decoration: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    border-top: 3px solid var(--navy);
+  }
+  .scard--secure { border-top-color: var(--gold); }
+  .scard--manage { border-top-color: var(--navy-mid); }
+  .scard:hover { border-color: var(--gray-mid); box-shadow: var(--shadow); }
+  .scard-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--gray);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  .scard h3 { font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .scard p  { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+  .scard-link { font-size: 12px; font-weight: 500; color: var(--gold); margin-top: 16px; display: block; }
+
+  /* CE strip */
+  .ce-strip { background: var(--navy-mid); padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .ce-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .ce-actions { display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; }
+
+  /* Why */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .why-card {
+    display: flex;
+    gap: 14px;
+    background: var(--gray);
+    border: 1px solid var(--gray-mid);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .why-check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--gold-light);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .why-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .why-text  { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* Blog */
+  .blog-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .bcard {
+    background: #fff;
+    border: 1px solid var(--gray-mid);
+    border-radius: var(--radius);
+    padding: 24px;
+    display: block;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .bcard:hover { border-color: #C9D0D9; box-shadow: var(--shadow); }
+  .bmeta { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+  .bdate { font-family: var(--font-mono); font-size: 11px; color: var(--text-subtle); }
+  .bcard-title  { font-size: 14px; font-weight: 500; color: var(--navy); line-height: 1.45; margin-bottom: 8px; }
+  .bcard-excerpt{ font-size: 13px; color: var(--text-subtle); line-height: 1.6; }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 28px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .ce-inner { flex-direction: column; }
+    .ce-actions { flex-direction: row; flex-wrap: wrap; }
+    .blog-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+</style>
